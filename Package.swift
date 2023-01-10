@@ -6,21 +6,41 @@ let package = Package(
     name: "nimbus-ios-dependencies",
     platforms: [.iOS(.v12)],
     products: [
-        .library(name: "GoogleInteractiveMediaAds", targets: ["GoogleInteractiveMediaAds"]),
-        .library(name: "OMSDKAdsbynimbus", targets: ["OMSDKAdsbynimbus"]),
-        .library(name: "DTBiOSSDK", targets: ["DTBiOSSDK"]),
-        .library(name: "FBAudienceNetwork", targets: ["FBAudienceNetwork"]),
-        .library(name: "UnityAds", targets: ["UnityAds"]),
+        .library(name: "GoogleInteractiveMediaAds", targets: ["GoogleInteractiveMediaAdsTarget"]),
+        .library(name: "OMSDK_Adsbynimbus", targets: ["OMSDK_AdsbynimbusTarget"]),
+        .library(name: "DTBiOSSDK", targets: ["DTBiOSSDKTarget"]),
+        .library(name: "FBAudienceNetwork", targets: ["FBAudienceNetworkTarget"]),
+        .library(name: "UnityAds", targets: ["UnityAdsTarget"]),
     ],
     targets: [
+        .target(
+            name: "GoogleInteractiveMediaAdsTarget",
+            dependencies: [.target(name: "GoogleInteractiveMediaAds")],
+            path: "GoogleInteractiveMediaAds"),
+        .target(
+            name: "OMSDK_AdsbynimbusTarget",
+            dependencies: [.target(name: "OMSDK_Adsbynimbus")],
+            path: "OMSDK_Adsbynimbus"),
+        .target(
+            name: "DTBiOSSDKTarget",
+            dependencies: [.target(name: "DTBiOSSDK")],
+            path: "DTBiOSSDK"),
+        .target(
+            name: "FBAudienceNetworkTarget",
+            dependencies: [.target(name: "FBAudienceNetwork")],
+            path: "FBAudienceNetwork"),
+        .target(
+            name: "UnityAdsTarget",
+            dependencies: [.target(name: "UnityAds")],
+            path: "UnityAds"),
         .binaryTarget(
             name: "GoogleInteractiveMediaAds",
             url: "https://imasdk.googleapis.com/native/downloads/ima-ios-v3.16.3.zip",
             checksum: "049bac92551b50247ea14dcbfde9aeb99ac2bea578a74f67c6f3e781d9aca101"),
         .binaryTarget(
-            name: "OMSDKAdsbynimbus",
-            url: "https://adsbynimbus-public.s3.amazonaws.com/iOS/external/omsdk/1.4.0/omsdk-adsbynimbus-1.4.0.zip",
-            checksum: "736e996210bbd959fb563421b6328c4027b3349bc20772f3d7c83c4f426e3a94"),
+            name: "OMSDK_Adsbynimbus",
+            url: "https://adsbynimbus-public.s3.amazonaws.com/iOS/external/omsdk/1.4.2/omsdk-adsbynimbus-1.4.2.zip",
+            checksum: "d42443a5d19a34418976945d8afcd11f25d471fa3178f80eba1c3f6035c0ad24"),
         .binaryTarget(
             name: "DTBiOSSDK",
             url: "https://mdtb-sdk-packages.s3.us-west-2.amazonaws.com/iOS_APS_SDK/APS_iOS_SDK-4.5.5.zip",
